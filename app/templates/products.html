@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Produits{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+
+<div class="products-wrapper">
+    <h2 class="page-title">Nos Produits</h2>
+
+    <!-- Filtre par catégorie -->
+    <form method="GET" action="{{ url_for('products') }}" class="category-filter-form">
+        <label for="category" class="category-label">
+            <i class="fas fa-filter"></i> Filtrer par catégorie :
+        </label>
+        <div class="category-select-wrapper">
+            <select name="category" id="category" onchange="this.form.submit()" class="category-select">
+                <option value="">-- Toutes --</option>
+                {% for cat in categories %}
+                    <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+            </select>
+            <span class="custom-arrow"><i class="fas fa-chevron-down"></i></span>
+        </div>
+    </form>
+
+    <!-- Affichage des produits -->
+    <div class="products-container">
+        {% for product in products %}
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.name }}" class="product-image">
+                    <div class="product-overlay">
+                        <span class="product-category"><i class="fas fa-tag"></i> {{ product.category }}</span>
+                        {% if product.stock > 0 %}
+                            <span class="stock-status in-stock"><i class="fas fa-check-circle"></i> En stock</span>
+                        {% else %}
+                            <span class="stock-status out-of-stock"><i class="fas fa-times-circle"></i> Rupture de stock</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="product-details">
+                    <h3 class="product-title">{{ product.name }}</h3>
+                    <div class="product-price">
+                        <strong>{{ product.price }} DH</strong>
+                    </div>
+                    <p class="product-description">{{ product.description }}</p>
+                    <div class="product-meta">
+                        <p class="meta-item"><em>Catégorie :</em> {{ product.category }}</p>
+                        <p class="meta-item"><em>Stock :</em> <span class="stock-count">{{ product.stock }}</span></p>
+                    </div>
+
+                    <form method="POST" action="{{ url_for('add_to_cart') }}" class="cart-form">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <input type="hidden" name="product_name" value="{{ product.name }}">
+                        <input type="hidden" name="product_price" value="{{ product.price }}">
+                        {% if session.user_id %}
+                            <button type="submit" class="btn-add-cart">
+                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                            </button>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="btn-login">
+                                <i class="fas fa-sign-in-alt"></i> Se connecter pour acheter
+                            </a>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Accueil - TrustShop{% endblock %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Découvrez TrustShop</h1>
+        <p>Votre destination shopping en ligne de confiance</p>
+        <div class="hero-buttons">
+            <a href="/products" class="btn-shop">
+                <span class="btn-content">
+                    <i class="fas fa-store"></i>
+                    Explorer nos produits
+                </span>
+                <span class="btn-hover"></span>
+            </a>
+        </div>
+    </div>
+    <div class="hero-features">
+        <div class="feature">
+            <i class="fas fa-truck-fast"></i>
+            <span>Livraison rapide</span>
+        </div>
+        <div class="feature">
+            <i class="fas fa-shield-alt"></i>
+            <span>Paiement sécurisé</span>
+        </div>
+        <div class="feature">
+            <i class="fas fa-undo"></i>
+            <span>Retours gratuits</span>
+        </div>
+    </div>
+</div>
+
+<section class="categories-section">
+    <h2 class="section-title">Nos Catégories</h2>
+    <div class="categories-grid">
+        <div class="category-card">
+            <div class="category-icon">
+                <i class="fas fa-laptop"></i>
+            </div>
+            <h3>Électronique</h3>
+            <a href="/products" class="category-link">Découvrir →</a>
+        </div>
+        <div class="category-card">
+            <div class="category-icon">
+                <i class="fas fa-tshirt"></i>
+            </div>
+            <h3>Mode</h3>
+            <a href="/products" class="category-link">Découvrir →</a>
+        </div>
+        <div class="category-card">
+            <div class="category-icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <h3>Maison</h3>
+            <a href="/products" class="category-link">Découvrir →</a>
+        </div>
+        <div class="category-card">
+            <div class="category-icon">
+                <i class="fas fa-dumbbell"></i>
+            </div>
+            <h3>Sport</h3>
+            <a href="/products" class="category-link">Découvrir →</a>
+        </div>
+    </div>
+</section>
+
+<section class="promo-section">
+    <div class="promo-card">
+        <div class="promo-content">
+            <h2>Offres Spéciales</h2>
+            <p>Jusqu'à -50% sur une sélection de produits</p>
+            <a href="/products" class="promo-btn">Voir les offres</a>
+        </div>
+    </div>
+</section>
+
+<section class="why-us-section">
+    <h2 class="section-title">Pourquoi Nous Choisir ?</h2>
+    <div class="reasons-grid">
+        <div class="reason-card">
+            <i class="fas fa-star"></i>
+            <h3>Qualité Premium</h3>
+            <p>Des produits soigneusement sélectionnés</p>
+        </div>
+        <div class="reason-card">
+            <i class="fas fa-headset"></i>
+            <h3>Support 24/7</h3>
+            <p>Une équipe à votre écoute</p>
+        </div>
+        <div class="reason-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Achat Sécurisé</h3>
+            <p>Paiement 100% sécurisé</p>
+        </div>
+        <div class="reason-card">
+            <i class="fas fa-gift"></i>
+            <h3>Offres Exclusives</h3>
+            <p>Des promotions régulières</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
